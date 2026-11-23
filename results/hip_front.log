@@ -1,0 +1,10 @@
+0/571
+100/571
+200/571
+300/571
+400/571
+500/571
+walking frames: 143142 -> 95739 after keeping only frames with the whole body visible; recordings with less than 60 frames left: 11 of 571
+pd_stgcn_sabo2022          front (away): repeat walks in one session differ by 0.17 points (n=128 sessions); before/after surgery 1.05 -> 0.81 (n=50), lower in 38
+pd_stgcn_sabo2022_ap2d     front (away): repeat walks in one session differ by 0.07 points (n=136 sessions); before/after surgery 1.50 -> 1.45 (n=54), lower in 29
+pd_stgcn_sabo2022_dt2d     front (away): repeat walks in one session differ by 0.12 points (n=136 sessions); before/after surgery 1.07 -> 0.98 (n=54), lower in 30

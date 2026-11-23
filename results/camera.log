@@ -1,0 +1,7 @@
+
+KOA-PD-NM: n=189  focal px median 1450 (IQR 1444-1454)  centre (638, 354)  reprojection error median 15.60 px, 95% 33.14 px
+  LeftToRight     n= 93  floor slope  -0.9 (sd 1.5)  hip roll  +1.7 (sd 1.5)  shoulder roll  +1.6 (sd 2.8)  body sideways  -1.6 (sd 1.4)  body forward  +2.4 (sd 2.0)
+  RightToLeft     n= 90  floor slope  +1.5 (sd 1.1)  hip roll  -1.2 (sd 1.4)  shoulder roll  -2.3 (sd 2.9)  body sideways  +1.0 (sd 1.5)  body forward  +0.2 (sd 1.7)
+
+Hip_OA: n=571  focal px median 677 (IQR 634-719)  centre (326, 239)  reprojection error median 15.04 px, 95% 105.92 px
+  AwayFromCamera  n=522  floor slope +10.3 (sd 2.8)  hip roll  +3.5 (sd 15.8)  shoulder roll  +2.7 (sd 17.1)  body sideways  -3.9 (sd 16.9)  body forward  -4.8 (sd 17.2)

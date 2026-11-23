@@ -1,0 +1,21 @@
+padded share of the study's training frames, per axis: [0.179 0.179 0.179] -> q = 0.179
+study's own 3 sample walks (1 person)  |shift| median 0.21 SD; by axis lr 0.05 up 0.32 depth 0.43 | spread ratio lr 0.97 up 0.48 depth 0.52
+ours NM                                |shift| median 0.33 SD; by axis lr 0.15 up 0.52 depth 0.26 | spread ratio lr 1.07 up 0.83 depth 0.98
+ours PD                                |shift| median 0.31 SD; by axis lr 0.09 up 0.73 depth 0.73 | spread ratio lr 1.25 up 1.18 depth 0.97
+ours KOA                               |shift| median 0.39 SD; by axis lr 0.17 up 0.52 depth 0.41 | spread ratio lr 1.29 up 0.82 depth 0.75
+ours all                               |shift| median 0.32 SD; by axis lr 0.13 up 0.57 depth 0.48 | spread ratio lr 1.24 up 1.00 depth 0.92
+
+mean position relative to the hip centre, metres (study training / ours)
+  up    Head +0.58/+0.58  LShoulder +0.40/+0.43  RShoulder +0.41/+0.42  LWrist +0.02/+0.00  LHip -0.00/+0.01  RHip +0.00/-0.01  LKnee -0.30/-0.35  LAnkle -0.60/-0.65  RAnkle -0.59/-0.66
+  depth Head -0.36/-0.43  LShoulder -0.21/-0.24  RShoulder -0.21/-0.26  LWrist -0.10/-0.05  LHip +0.00/+0.01  RHip -0.00/-0.01  LKnee +0.14/+0.18  LAnkle +0.35/+0.46  RAnkle +0.35/+0.44
+  hip-height spread in the study (SD): 1.0 mm, ours 12.8 mm
+
+pelvis direction against the walking direction (0 deg = the hip line is square to the path)
+  NM   left to right  yaw   +0.2 deg (sd 6.0)  roll  +1.2 deg (sd 1.2)  n=30
+  NM   right to left  yaw   -3.1 deg (sd 6.3)  roll  -0.9 deg (sd 1.3)  n=27
+  PD   left to right  yaw   +3.1 deg (sd 10.8)  roll  +2.8 deg (sd 1.1)  n=14
+  PD   right to left  yaw   -3.8 deg (sd 9.6)  roll  -1.9 deg (sd 1.5)  n=14
+  KOA  left to right  yaw   +0.1 deg (sd 5.6)  roll  +1.6 deg (sd 1.5)  n=48
+  KOA  right to left  yaw   -4.1 deg (sd 5.9)  roll  -1.0 deg (sd 1.3)  n=49
+
+segment lengths (m) study samples / ours: {'shoulder width': (0.32, 0.35), 'hip width': (0.14, 0.25), 'thigh': (0.3, 0.41), 'shank': (0.39, 0.42), 'upper arm': (0.24, 0.26)}

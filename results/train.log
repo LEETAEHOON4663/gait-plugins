@@ -1,0 +1,106 @@
+{
+ "videos_used": 176,
+ "videos_excluded": {
+  "KOA": 4,
+  "NM": 4,
+  "PD": 5
+ },
+ "subjects": {
+  "KOA": 50,
+  "NM": 30,
+  "PD": 15
+ },
+ "mean_age": {
+  "KOA": 56.8,
+  "NM": 43.8,
+  "PD": 68.5
+ },
+ "nested_cv": {
+  "auc": [
+   0.834,
+   0.816,
+   0.864
+  ],
+  "bal_acc": [
+   0.777,
+   0.757,
+   0.815
+  ],
+  "sens": [
+   0.782,
+   0.72,
+   0.84
+  ],
+  "spec_NM": [
+   0.933,
+   0.874,
+   0.967
+  ],
+  "fp_PD": [
+   0.553,
+   0.482,
+   0.6
+  ],
+  "auc_vs_NM": [
+   0.93,
+   0.909,
+   0.951
+  ],
+  "auc_vs_PD": [
+   0.643,
+   0.606,
+   0.691
+  ],
+  "auc_age45_70": [
+   0.8,
+   0.774,
+   0.83
+  ],
+  "auc_vs_NM_age45_70": [
+   0.911,
+   0.89,
+   0.931
+  ]
+ },
+ "n_age45_70": {
+  "KOA": 38,
+  "NM": 16,
+  "PD": 10
+ },
+ "bootstrap_auc_95ci": [
+  0.845,
+  0.754,
+  0.925
+ ],
+ "controls_auc": {
+  "age_only": [
+   0.594,
+   0.571,
+   0.605
+  ],
+  "clip_only": [
+   0.589,
+   0.525,
+   0.644
+  ],
+  "speed_only": [
+   0.68,
+   0.672,
+   0.69
+  ],
+  "age_only_vs_NM": [
+   0.785,
+   0.778,
+   0.79
+  ]
+ },
+ "chosen_in_outer_folds": {
+  "lower_limb/C=0.5": 18,
+  "lower_limb/C=2.0": 15,
+  "all/C=2.0": 9,
+  "all/C=0.5": 5,
+  "lower_limb/C=0.1": 3
+ }
+}
+shipped: all C = 2.0
+coef: [('stride_time_s', -1.75), ('hip_rom_mean', 1.63), ('knee_rom_mean', -1.55), ('cadence', -1.23), ('stride_len_leg', 0.98), ('knee_rom_asym', 0.87), ('step_time_asym', -0.83), ('knee_peak_flex_mean', -0.79)]

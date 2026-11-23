@@ -1,0 +1,15 @@
+100
+200
+300
+400
+500
+600
+700
+KOA-PD-NM 189 recordings; share of walking frames with a joint outside the image:
+   kinect13 (ST-GCN 3D)     median 0%, over 20%: 0 (0%), over 50%: 0%
+   gaitlab_lower            median 1%, over 20%: 0 (0%), over 50%: 0%
+   lower_limb_arms (Zeni)   median 0%, over 20%: 0 (0%), over 50%: 0%
+Hip_OA 571 recordings; share of walking frames with a joint outside the image:
+   kinect13 (ST-GCN 3D)     median 20%, over 20%: 288 (50%), over 50%: 6%
+   gaitlab_lower            median 16%, over 20%: 125 (22%), over 50%: 0%
+   lower_limb_arms (Zeni)   median 16%, over 20%: 137 (24%), over 50%: 1%

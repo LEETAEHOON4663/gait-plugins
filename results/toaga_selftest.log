@@ -1,0 +1,70 @@
+
+######## joints from alphapose, written as Nova-77 files (3D is a placeholder; only the 2D test runs)
+Nova-77 files found: 28 of 28
+walks matched: 72, not matched or not used: 0
+image scale between the files: 2.667 (should be the same everywhere; spread 0.000), alignment error 0.0 px
+
+1. study model fed with Nova-77's own 2D joints (no view change), judged against swapping AlphaPose and Detectron
+   alphapose model: PASS (bias +0.00, n=72)
+        ok   walks found 100% >= 85%
+        ok   mean |diff| 0.00 <= 0.32 (swap 0.25, 95% bound)
+        ok   class changes 0% <= 33% (swap 24%)
+        ok   rank correlation 1.00 >= 0.61 (swap 0.76)
+   detectron model: PASS (bias +0.12, n=72)
+        ok   walks found 100% >= 85%
+        ok   mean |diff| 0.16 <= 0.20 (swap 0.16, 95% bound)
+        ok   class changes 18% <= 28% (swap 18%)
+        ok   rank correlation 0.84 >= 0.72 (swap 0.84)
+-> verdict for the AlphaPose model: PASS; expected PASS: as expected
+
+######## joints from detectron, written as Nova-77 files (3D is a placeholder; only the 2D test runs)
+Nova-77 files found: 28 of 28
+walks matched: 62, not matched or not used: 10
+    (1, 'bottom', 'front', 2): gaps in the Nova-77 track
+    (1, 'bottom', 'front', 3): gaps in the Nova-77 track
+    (2, 'bottom', 'front', 1): gaps in the Nova-77 track
+    (2, 'bottom', 'front', 2): not found in the video (best inf px)
+    (2, 'bottom', 'front', 3): gaps in the Nova-77 track
+    (2, 'top', 'front', 2): gaps in the Nova-77 track
+    (4, 'top', 'front', 2): gaps in the Nova-77 track
+    (8, 'bottom', 'front', 1): gaps in the Nova-77 track
+image scale between the files: 2.662 (should be the same everywhere; spread 0.017), alignment error 2.7 px
+
+1. study model fed with Nova-77's own 2D joints (no view change), judged against swapping AlphaPose and Detectron
+   alphapose model: PASS (bias -0.25, n=62)
+        ok   walks found 86% >= 85%
+        ok   mean |diff| 0.27 <= 0.35 (swap 0.27, 95% bound)
+        ok   class changes 23% <= 35% (swap 23%)
+        ok   rank correlation 0.69 >= 0.55 (swap 0.69)
+   detectron model: PASS (bias +0.00, n=62)
+        ok   walks found 86% >= 85%
+        ok   mean |diff| 0.01 <= 0.21 (swap 0.17, 95% bound)
+        ok   class changes 0% <= 31% (swap 19%)
+        ok   rank correlation 1.00 >= 0.66 (swap 0.80)
+-> verdict for the AlphaPose model: PASS; expected PASS: as expected
+
+######## joints from openpose, written as Nova-77 files (3D is a placeholder; only the 2D test runs)
+Nova-77 files found: 28 of 28
+walks matched: 44, not matched or not used: 28
+    (1, 'bottom', 'front', 3): gaps in the Nova-77 track
+    (1, 'top', 'front', 3): gaps in the Nova-77 track
+    (2, 'bottom', 'front', 2): gaps in the Nova-77 track
+    (2, 'bottom', 'front', 3): gaps in the Nova-77 track
+    (2, 'top', 'front', 1): gaps in the Nova-77 track
+    (2, 'top', 'front', 2): gaps in the Nova-77 track
+    (3, 'bottom', 'front', 1): gaps in the Nova-77 track
+    (3, 'top', 'front', 2): gaps in the Nova-77 track
+image scale between the files: 2.661 (should be the same everywhere; spread 0.208), alignment error 5.1 px
+
+1. study model fed with Nova-77's own 2D joints (no view change), judged against swapping AlphaPose and Detectron
+   alphapose model: FAIL (bias +0.22, n=44)
+        FAIL walks found 61% >= 85%
+        ok   mean |diff| 0.28 <= 0.34 (swap 0.26, 95% bound)
+        ok   class changes 14% <= 39% (swap 27%)
+        FAIL rank correlation 0.22 >= 0.51 (swap 0.70)
+   detectron model: FAIL (bias +0.29, n=44)
+        FAIL walks found 61% >= 85%
+        FAIL mean |diff| 0.31 <= 0.21 (swap 0.16, 95% bound)
+        ok   class changes 25% <= 30% (swap 20%)
+        ok   rank correlation 0.64 >= 0.55 (swap 0.75)
+-> verdict for the AlphaPose model: FAIL; expected FAIL: as expected

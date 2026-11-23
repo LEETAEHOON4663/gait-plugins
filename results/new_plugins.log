@@ -1,0 +1,7 @@
+KOA-PD-NM videos 189 | scored: {'pd_stgcn_sabo2022': 182, 'pd_stgcn_sabo2022_ap2d': 182, 'pd_stgcn_sabo2022_dt2d': 182, 'gait_events_zeni2008': 176, 'gait_gaitlab2020': 117}
+subject-level agreement of the same study's models (Spearman): {'2022 vs ap2d': (0.64, 96), '2022 vs dt2d': (0.71, 96), 'ap2d vs dt2d': (0.93, 96)}
+   pd_stgcn_sabo2022          PD vs NM AUC 0.98  PD vs KOA 0.80  mean NM/PD/KOA 0.07/1.31/0.93
+   pd_stgcn_sabo2022_ap2d     PD vs NM AUC 0.94  PD vs KOA 0.76  mean NM/PD/KOA 1.17/1.52/1.34
+   pd_stgcn_sabo2022_dt2d     PD vs NM AUC 0.95  PD vs KOA 0.80  mean NM/PD/KOA 0.67/1.38/1.02
+cadence, Zeni events vs mobile-gaitlab network (videos where both run, n=116): Spearman 0.72, mean Zeni 85, network 96 steps/min
+Zeni by group (steps/min): {'NM': 112.0, 'PD': 76.0, 'KOA': 87.0}

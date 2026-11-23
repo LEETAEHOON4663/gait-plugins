@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.venv/
+weights/
+*.pt
+*.npz
+third_party/
+data/nova77_full/
+data/toaga/
+sync.sh

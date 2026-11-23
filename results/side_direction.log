@@ -1,0 +1,9 @@
+0 4s
+50 41s
+100 84s
+150 118s
+pd_stgcn_sabo2022          left-to-right vs right-to-left: mean |difference| 0.31 (spread of all scores SD 0.61), n=87
+pd_stgcn_sabo2022_ap2d     left-to-right vs right-to-left: mean |difference| 0.13 (spread of all scores SD 0.22), n=87
+pd_stgcn_sabo2022_dt2d     left-to-right vs right-to-left: mean |difference| 0.20 (spread of all scores SD 0.39), n=87
+gait_events_zeni2008       left-to-right vs right-to-left: mean |difference| 3.84 (spread of all scores SD 18.56), n=82
+gait_gaitlab2020           left-to-right vs right-to-left: mean |difference| 7.97 (spread of all scores SD 7.22), n=46

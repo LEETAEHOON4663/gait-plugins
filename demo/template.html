@@ -1,0 +1,150 @@
+<title>보행 연구 통합 파이프라인</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one recording flows left to right through three stages (input, shared 3D, studies) on one shared clock. */
+:root{--page:#eef2f3;--panel:#ffffff;--ink:#10191d;--ink2:#48575e;--muted:#6d7c83;--line:#d5dee2;--grid:#dfe7ea;--left:#2a78d6;--right:#eb6834;--trunk:#33444c;--good:#0a7a0a;--warn:#8a5a00;--bad:#b02a2a;--goodbg:#e6f4e6;--warnbg:#fdf1d8;--badbg:#fbe6e6;
+--sans:"IBM Plex Sans KR","Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;--mono:"IBM Plex Mono","JetBrains Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#0d1214;--panel:#161c1f;--ink:#e8eef0;--ink2:#b3c0c5;--muted:#8d9ca3;--line:#2b363b;--grid:#263035;--left:#3987e5;--right:#d95926;--trunk:#c4d0d5;--good:#53c653;--warn:#f0b94a;--bad:#f08a8a;--goodbg:#14301a;--warnbg:#33270d;--badbg:#371a1a;color-scheme:dark}}
+:root[data-theme="dark"]{--page:#0d1214;--panel:#161c1f;--ink:#e8eef0;--ink2:#b3c0c5;--muted:#8d9ca3;--line:#2b363b;--grid:#263035;--left:#3987e5;--right:#d95926;--trunk:#c4d0d5;--good:#53c653;--warn:#f0b94a;--bad:#f08a8a;--goodbg:#14301a;--warnbg:#33270d;--badbg:#371a1a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 15px/1.55 var(--sans)}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px;display:flex;flex-direction:column;gap:22px}
+h1{font-size:26px;line-height:1.25;font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.sub{margin:6px 0 0;color:var(--ink2);max-width:62ch}
+h2{font-size:15px;font-weight:600;margin:0}
+h3{font-size:14px;font-weight:600;margin:0}
+p{margin:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.cases{display:flex;flex-wrap:wrap;gap:8px}
+.cases button{font:500 14px/1.3 var(--sans);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 13px;cursor:pointer;text-align:left}
+.cases button span{display:block;font-weight:400;font-size:12px;color:var(--muted);margin-top:1px}
+.cases button:hover{border-color:var(--ink2)}
+.cases button[aria-pressed="true"]{background:var(--ink);color:var(--page);border-color:var(--ink)}
+.cases button[aria-pressed="true"] span{color:var(--page);opacity:.75}
+button:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid var(--left);outline-offset:2px}
+.flow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.25fr);gap:14px;align-items:start}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:11px;min-width:0}
+.stagehead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.stagehead small{color:var(--muted);font-size:12px}
+canvas{display:block;width:100%;background:var(--page);border-radius:5px;touch-action:none}
+#world{cursor:grab}#world:active{cursor:grabbing}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:13px}
+dt{color:var(--muted)}dd{margin:0;text-align:right;min-width:0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{font:500 12px/1 var(--sans);color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:5px;padding:7px 9px;cursor:pointer}
+.presets button:hover{color:var(--ink);border-color:var(--ink2)}
+.study{border-top:1px solid var(--line);padding-top:13px;display:grid;grid-template-columns:132px minmax(0,1fr);gap:13px;align-items:start}
+.study:first-of-type{border-top:0;padding-top:0}
+.study .body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.take{font-size:12.5px;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:12px;font-weight:500;line-height:1.35;padding:3px 7px;border-radius:4px}
+.chip.good{background:var(--goodbg);color:var(--good)}.chip.warn{background:var(--warnbg);color:var(--warn)}.chip.bad{background:var(--badbg);color:var(--bad)}
+.big{font-size:21px;font-weight:600;line-height:1.2}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{padding:5px 0;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+tr:first-child td,tr:first-child th{border-top:0}
+td.v{text-align:right;white-space:nowrap;padding-left:10px}
+td.n{color:var(--muted);font-size:12px;padding-left:10px}
+.clock{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.clock button{font:600 14px/1 var(--sans);min-width:74px;padding:9px 12px;border-radius:6px;border:1px solid var(--ink);background:var(--ink);color:var(--page);cursor:pointer}
+.clock input{flex:1;min-width:0;accent-color:var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.status{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;overflow-x:auto}
+.status table{min-width:560px}.status th{font-weight:500;width:30%}
+.status td.s{white-space:nowrap;width:92px}
+.foot{font-size:12.5px;color:var(--muted);max-width:80ch}
+@media (max-width:980px){.flow{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.study{grid-template-columns:104px minmax(0,1fr);gap:10px}h1{font-size:22px}}
+</style>
+<div class="wrap">
+<header>
+<h1>보행 연구 통합 파이프라인</h1>
+<p class="sub">NVIDIA 스켈레톤 하나를 각 연구가 쓰던 시점과 관절로 바꿔 넘기고, 연구가 내놓은 값을 그 단위 그대로 보여 줍니다. 아래 값은 실제 파이프라인 출력입니다.</p>
+</header>
+<nav class="cases" id="cases" aria-label="예시 영상"></nav>
+<div class="flow">
+<section class="stage" aria-labelledby="h-in"><div class="stagehead"><h2 id="h-in">입력</h2><small>원본 카메라에서 본 관절</small></div>
+<canvas id="raw" role="img" aria-label="원본 카메라 화면의 스켈레톤"></canvas><dl id="f-in"></dl></section>
+<section class="stage" aria-labelledby="h-3d"><div class="stagehead"><h2 id="h-3d">공통 3D</h2><small>끌어서 돌려 보기</small></div>
+<canvas id="world" role="img" tabindex="0" aria-label="3D 스켈레톤. 끌거나 화살표 키로 회전"></canvas>
+<div class="presets" id="presets"></div><dl id="f-3d"></dl></section>
+<section class="stage" aria-labelledby="h-st"><div class="stagehead"><h2 id="h-st">연구</h2><small id="ran"></small></div><div id="studies"></div></section>
+</div>
+<div class="clock"><button id="play" type="button">멈춤</button><input id="scrub" type="range" min="0" value="0" aria-label="재생 위치"><span class="num" id="time"></span></div>
+<div class="legend"><span><i style="background:var(--left)"></i>왼쪽 팔다리</span><span><i style="background:var(--right)"></i>오른쪽 팔다리</span><span><i style="background:var(--trunk)"></i>몸통</span><span>연구 화면의 점은 그 연구가 실제로 받는 관절입니다.</span></div>
+<section class="status" aria-labelledby="h-s"><h2 id="h-s" style="margin-bottom:8px">어디까지 됐나</h2><table id="state"></table></section>
+<p class="foot">연구용 시연입니다. 진단이 아니며 서로 다른 연구의 값은 비교할 수 없습니다. 예시는 공개 데이터(KOA-PD-NM, Hip_OA)에서 NVIDIA 모델로 뽑은 관절 좌표이고, 조건에 맞는 첫 영상을 골랐습니다. 영상과 얼굴은 들어 있지 않습니다.</p>
+</div>
+<script type="application/json" id="data">/*DATA*/</script>
+<script>
+(function(){
+"use strict";
+var D=JSON.parse(document.getElementById("data").textContent),B=D.body,IX={};B.forEach(function(n,i){IX[n]=i});
+var BONES=[["pelvis","chest","t"],["chest","neck","t"],["neck","head","t"],["neck","lsho","l"],["lsho","lelb","l"],["lelb","lwri","l"],["neck","rsho","r"],["rsho","relb","r"],["relb","rwri","r"],["pelvis","lhip","l"],["lhip","lkne","l"],["lkne","lank","l"],["lank","ltoe","l"],["ltoe","ltip","l"],["pelvis","rhip","r"],["rhip","rkne","r"],["rkne","rank","r"],["rank","rtoe","r"],["rtoe","rtip","r"]];
+var USE={coco13_nose:["head","lsho","rsho","lelb","relb","lwri","rwri","lhip","rhip","lkne","rkne","lank","rank"],lower_limb_arms:["pelvis","neck","lsho","rsho","lwri","rwri","lhip","rhip","lkne","rkne","lank","rank","ltoe","rtoe"],kinect13:["head","lsho","rsho","lelb","relb","lwri","rwri","lhip","rhip","lkne","rkne","lank","rank"],gaitlab_lower:["lhip","rhip","lkne","rkne","lank","rank","ltip","rtip"]};
+var STUDY={pd_stgcn_sabo2022:{name:"파킨슨 보행 점수",ref:"Sabo 외 2022, ST-GCN",take:"13개 관절, 정면에서 30도 내려다본 3D",cam:[0,30]},gait_gaitlab2020:{name:"보행 지표",ref:"Kidziński 외 2020, mobile-gaitlab",take:"8개 다리 관절, 옆에서 본 2D",cam:[90,0]},
+pd_stgcn_sabo2022_ap2d:{name:"파킨슨 보행 점수 (AlphaPose 2D)",ref:"Sabo 외 2022, 같은 연구의 2D 모델",take:"13개 관절, 정면 2D (10개 모델 평균)",cam:[0,0]},
+pd_stgcn_sabo2022_dt2d:{name:"파킨슨 보행 점수 (Detectron 2D)",ref:"Sabo 외 2022, 같은 연구의 2D 모델",take:"13개 관절, 정면 2D (10개 모델 평균)",cam:[0,0]},
+gait_events_zeni2008:{name:"걸음 시점과 시간",ref:"Zeni 외 2008, 계산법",take:"다리와 골반 관절의 앞뒤 위치",cam:[90,0]}};
+var VIEW={Side:"측면",Front:"정면·후면",Oblique:"비스듬함",Unknown:"알 수 없음"},DIR={LeftToRight:"왼쪽에서 오른쪽",RightToLeft:"오른쪽에서 왼쪽",TowardCamera:"카메라 쪽으로",AwayFromCamera:"카메라 반대쪽으로",Unknown:"알 수 없음"};
+var st={c:0,f:0,t:0,play:true,az:0,el:8},$=function(i){return document.getElementById(i)};
+var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if(reduce)st.play=false;
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+var C={};function colors(){["--ink","--ink2","--muted","--line","--grid","--left","--right","--trunk","--page","--panel"].forEach(function(k){C[k]=css(k)})}
+function cam(az,el){var a=az*Math.PI/180,e=el*Math.PI/180,r=[-Math.sin(a),Math.cos(a),0],l=[-Math.cos(e)*Math.cos(a),-Math.cos(e)*Math.sin(a),-Math.sin(e)];return{r:r,l:l,u:[r[1]*l[2]-r[2]*l[1],r[2]*l[0]-r[0]*l[2],r[0]*l[1]-r[1]*l[0]]}}
+function dot(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]}
+function size(cv,h){var w=cv.clientWidth,p=Math.min(2,window.devicePixelRatio||1);if(cv.width!==Math.round(w*p)||cv.height!==Math.round(h*p)){cv.width=Math.round(w*p);cv.height=Math.round(h*p);cv.style.height=h+"px"}var x=cv.getContext("2d");x.setTransform(p,0,0,p,0,0);x.clearRect(0,0,w,h);return{x:x,w:w,h:h}}
+function col(k){return k==="l"?C["--left"]:k==="r"?C["--right"]:C["--trunk"]}
+function bones(x,P,o){o=o||{};var L=BONES.map(function(b){return{b:b,z:o.z?(o.z[IX[b[0]]]+o.z[IX[b[1]]])/2:0}});if(o.z)L.sort(function(p,q){return q.z-p.z});
+x.lineCap="round";L.forEach(function(q){var a=P[IX[q.b[0]]],b=P[IX[q.b[1]]];x.globalAlpha=o.alpha==null?1:o.alpha;x.strokeStyle=col(q.b[2]);x.lineWidth=o.lw||3;x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()});
+var h=P[IX.head];x.globalAlpha=o.alpha==null?1:o.alpha;x.fillStyle=C["--trunk"];x.beginPath();x.arc(h[0],h[1],(o.lw||3)*1.9,0,7);x.fill();x.globalAlpha=1}
+function frame(){return D.cases[st.c]}
+function drawRaw(){var c=frame(),cv=$("raw"),W=c.size[0],H=c.size[1],g=size(cv,Math.round(cv.clientWidth*H/W)),s=g.w/W;if(!c.xy)return;bones(g.x,c.xy[st.f].map(function(p){return[p[0]*s,p[1]*s]}),{lw:Math.max(2,g.w/170)})}
+function drawWorld(){var c=frame(),cv=$("world"),g=size(cv,Math.max(260,Math.round(cv.clientWidth*.82))),x=g.x;if(!c.world)return;var k=cam(st.az,st.el),F=c.world[st.f],p0=F[0],S=g.h/2150,cx=g.w/2,cy=g.h*.47;
+function pr(p){var q=[p[0]-p0[0],p[1]-p0[1],p[2]-p0[2]];return[cx+dot(q,k.r)*S,cy-dot(q,k.u)*S,dot(q,k.l)]}
+var fl=c.floor,st_=500,r=1750,a0=Math.ceil((p0[0]-r)/st_)*st_,b0=Math.ceil((p0[1]-r)/st_)*st_;x.strokeStyle=C["--grid"];x.lineWidth=1;
+for(var a=a0;a<=p0[0]+r;a+=st_){var u=pr([a,p0[1]-r,fl]),v=pr([a,p0[1]+r,fl]);x.beginPath();x.moveTo(u[0],u[1]);x.lineTo(v[0],v[1]);x.stroke()}
+for(var b=b0;b<=p0[1]+r;b+=st_){var u2=pr([p0[0]-r,b,fl]),v2=pr([p0[0]+r,b,fl]);x.beginPath();x.moveTo(u2[0],u2[1]);x.lineTo(v2[0],v2[1]);x.stroke()}
+var s0=pr([p0[0]+350,p0[1],fl]),s1=pr([p0[0]+900,p0[1],fl]);x.strokeStyle=C["--muted"];x.lineWidth=2;x.beginPath();x.moveTo(s0[0],s0[1]);x.lineTo(s1[0],s1[1]);x.stroke();var an=Math.atan2(s1[1]-s0[1],s1[0]-s0[0]);if(Math.hypot(s1[0]-s0[0],s1[1]-s0[1])>12){x.beginPath();x.moveTo(s1[0]-9*Math.cos(an-.5),s1[1]-9*Math.sin(an-.5));x.lineTo(s1[0],s1[1]);x.lineTo(s1[0]-9*Math.cos(an+.5),s1[1]-9*Math.sin(an+.5));x.stroke()}
+var P=F.map(pr);bones(x,P,{lw:Math.max(3,g.w/110),z:P.map(function(q){return q[2]})});
+x.fillStyle=C["--muted"];x.font="12px "+css("--sans");x.fillText("바닥 한 칸 0.5 m (모델 추정)",10,20)}
+function drawStudy(cv,id,ok){var c=frame(),g=size(cv,178),x=g.x;if(!c.world)return;var s=STUDY[id],k=cam(s.cam[0],s.cam[1]),F=c.world[st.f],h=[0,1,2].map(function(i){return(F[IX.lhip][i]+F[IX.rhip][i])/2}),S=178/1980,P=F.map(function(p){var q=[p[0]-h[0],p[1]-h[1],p[2]-h[2]];return[g.w/2+dot(q,k.r)*S,84-dot(q,k.u)*S]});
+bones(x,P,{lw:2,alpha:ok?.24:.14});if(!ok)return;USE[D.plugins[id].joint_set].forEach(function(n){var p=P[IX[n]];x.fillStyle=n[0]==="l"?C["--left"]:n[0]==="r"?C["--right"]:C["--trunk"];x.beginPath();x.arc(p[0],p[1],4,0,7);x.fill()})}
+function draw(){drawRaw();drawWorld();document.querySelectorAll("canvas[data-study]").forEach(function(cv){drawStudy(cv,cv.dataset.study,cv.dataset.ok==="1")});var c=frame(),n=(c.world||c.xy||[]).length;$("time").textContent=(st.f/c.fps).toFixed(1)+" / "+(n/c.fps).toFixed(1)+" s";$("scrub").value=st.f}
+function reason(r){var m=/^view:(\w+)_needs_(.+)$/.exec(r);if(m)return"촬영 방향이 "+VIEW[m[1]]+"이라 실행하지 않았습니다. 필요한 방향은 "+m[2].split("/").map(function(v){return VIEW[v]}).join(" 또는 ")+"입니다.";m=/^too_short:(\d+)<(\d+)/.exec(r);if(m)return"이어진 걸음이 "+m[1]+"프레임이라 짧습니다. "+m[2]+"프레임이 필요합니다.";return r}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function meter(v){var p=Math.max(0,Math.min(2,v))/2*200+10;return'<svg viewBox="0 0 220 38" width="100%" style="max-width:260px;display:block" role="img" aria-label="0에서 2 사이 '+v.toFixed(2)+'점"><line x1="10" y1="12" x2="210" y2="12" stroke="var(--line)" stroke-width="4" stroke-linecap="round"/>'+[0,1,2].map(function(t){return'<line x1="'+(10+t*100)+'" y1="6" x2="'+(10+t*100)+'" y2="18" stroke="var(--muted)" stroke-width="1"/><text x="'+(10+t*100)+'" y="34" font-size="12" text-anchor="middle" fill="var(--ink2)">'+t+"</text>"}).join("")+'<circle cx="'+p+'" cy="12" r="6.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="2"/></svg>'}
+function card(r){var s=STUDY[r.id],ok=r.status==="ok",c=frame(),h='<div class="study"><canvas data-study="'+r.id+'" data-ok="'+(ok?1:0)+'" role="img" aria-label="'+s.name+' 연구가 받는 관절"></canvas><div class="body"><div><h3>'+s.name+'</h3><p class="take">'+s.ref+"<br>받는 것: "+s.take+"</p></div>";
+if(!ok)return h+'<div class="chips"><span class="chip bad">✕ 판단 불가</span></div><p class="take">'+esc(reason(r.reasons[0]||""))+"</p></div></div>";
+if(r.id==="gait_events_zeni2008"){var z=r.detail;h+='<table><tr><td>걸음수</td><td class="v num">'+(z.cadence_steps_min==null?"–":z.cadence_steps_min.toFixed(0))+'</td><td class="n">걸음/분</td></tr><tr><td>보행주기</td><td class="v num">'+(z.stride_time_s==null?"–":z.stride_time_s.toFixed(2))+'</td><td class="n">s</td></tr><tr><td>디딤 비율</td><td class="v num">'+(z.stance_pct==null?"–":z.stance_pct.toFixed(0))+'</td><td class="n">%</td></tr><tr><td>좌우 걸음 차이</td><td class="v num">'+(z.step_time_asym_pct==null?"–":z.step_time_asym_pct.toFixed(0))+'</td><td class="n">% (시간)</td></tr></table><div class="chips"><span class="chip good">✓ 공개 계산법</span><span class="chip warn">! 발뒤꿈치 대신 발목 사용</span></div>'}
+else if(r.id.indexOf("pd_stgcn_sabo2022")===0&&r.id!=="pd_stgcn_sabo2022"){h+='<div><span class="big num">'+r.score.toFixed(2)+'</span> <span class="take">UPDRS 보행 항목 점수 (0–2)</span>'+meter(r.score)+'</div><div class="chips"><span class="chip good">✓ 원본 코드와 일치</span><span class="chip warn">! 순서만 참고, 절대값 아님</span></div>'}
+else if(r.id==="pd_stgcn_sabo2022"){h+='<div><span class="big num">'+r.score.toFixed(2)+'</span> <span class="take">UPDRS 보행 항목 점수 (0–2)</span>'+meter(r.score)+"</div>"+'<div class="chips"><span class="chip good">✓ 원본 코드와 일치</span><span class="chip warn">! 정확도 미확인</span>'+(c.view==="Side"?'<span class="chip warn">! 측면은 참고만</span>':"")+"</div>"}
+else if(r.id==="gait_gaitlab2020"){var o=r.detail.outputs,cc=c.cadence_counted;h+='<table><tr><td>걸음수</td><td class="v num">'+o.cadence.toFixed(2)+'</td><td class="n">걸음주기/초'+(cc?" · 직접 세면 "+cc.toFixed(2):"")+'</td></tr><tr><td>속도</td><td class="v num">'+o.speed.toFixed(2)+'</td><td class="n">m/s</td></tr><tr><td>GDI</td><td class="v num">'+o.GDI.toFixed(0)+'</td><td class="n">100이 전형적인 걸음</td></tr><tr><td>무릎 굴곡</td><td class="v num">'+o.KneeFlex_maxExtension_L.toFixed(0)+"° / "+o.KneeFlex_maxExtension_R.toFixed(0)+'°</td><td class="n">왼쪽 / 오른쪽, 가장 폈을 때</td></tr></table><div class="chips"><span class="chip good">✓ 저자 예시 7개 값과 일치</span><span class="chip warn">! 절대값 말고 순위만</span></div>'}
+else h+='<p class="take">'+esc(r.label)+'</p>';
+return h+"</div></div>"}
+function row(k,v){return"<dt>"+k+"</dt><dd>"+v+"</dd>"}
+function pick(i){st.c=i;st.f=0;st.t=0;var c=frame(),n=(c.world||c.xy||[]).length;
+if(c.world&&c.floor==null){var t=[];c.world.forEach(function(F){t.push(Math.min(F[IX.ltip][2],F[IX.rtip][2],F[IX.ltoe][2],F[IX.rtoe][2]))});t.sort(function(a,b){return a-b});c.floor=t[Math.floor(t.length*.1)]}
+Array.prototype.forEach.call($("cases").children,function(b,j){b.setAttribute("aria-pressed",j===i?"true":"false")});$("scrub").max=Math.max(0,n-1);
+$("f-in").innerHTML=row("파일",esc(c.file))+row("사람이 잡힌 프레임",c.detected+" / "+c.frames)+row("해상도",c.size.join(" × "));
+$("f-3d").innerHTML=row("촬영 방향",VIEW[c.view])+row("걷는 방향",DIR[c.direction])+row("카메라 기울기",(c.tilt==null?"–":c.tilt.toFixed(1)+"°"))+row("이어진 걸음",c.walk+"프레임, "+(c.walk/c.fps).toFixed(1)+" s")+row("메운 프레임",Math.round((c.filled||0)*100)+"%");
+$("studies").innerHTML=c.results.slice().sort(function(a,b){return a.id<b.id?1:-1}).map(card).join("");var ok=c.results.filter(function(r){return r.status==="ok"}).length;$("ran").textContent=c.results.length+"개 중 "+ok+"개 실행";
+st.az=orig(c);st.el=8;draw()}
+function orig(c){return{LeftToRight:-90,RightToLeft:90,TowardCamera:0,AwayFromCamera:180}[c.direction]!=null?{LeftToRight:-90,RightToLeft:90,TowardCamera:0,AwayFromCamera:180}[c.direction]:-45}
+D.cases.forEach(function(c,i){var b=document.createElement("button");b.type="button";b.id="case-"+i;var ok=c.results.filter(function(r){return r.status==="ok"}).length;b.innerHTML=esc(c.title)+"<span>"+VIEW[c.view]+", 연구 "+ok+"/"+c.results.length+" 실행</span>";b.onclick=function(){pick(i)};$("cases").appendChild(b)});
+[["원본 카메라",function(){return[orig(frame()),8]}],["정면 30° 위 (ST-GCN)",function(){return[0,30]}],["옆 (mobile-gaitlab)",function(){return[90,0]}],["위에서",function(){return[0,89]}]].forEach(function(p){var b=document.createElement("button");b.type="button";b.textContent=p[0];b.onclick=function(){var v=p[1]();st.az=v[0];st.el=v[1];draw()};$("presets").appendChild(b)});
+$("state").innerHTML=[["NVIDIA 스켈레톤 읽기와 검사","done","760개 파일 모두 읽음"],["공통 3D와 가상 카메라","done","반전보다 사람별 일치도가 좋음 (8.5 → 6.3 cm)"],["플러그인 넣고 빼기","done","폴더만 넣고 빼면 됨, 하나가 실패해도 나머지는 계속"],["연구 연결","part","5개 (논문 3편: 가중치 모델 4개, 계산법 1개). 무릎 관절염은 쓸 수 있는 공개 가중치를 못 찾음"],["연구와 코드가 같은가","done","가중치 모델 4개 모두 원본 출력과 일치"],["연구와 성능이 같은가","wait","추출기가 달라 아직 증명 못함. 공개 데이터(TOAGA)로 판정 준비됨"]].map(function(r){var m={done:["good","✓ 됨"],part:["warn","! 일부"],wait:["bad","✕ 아직"]}[r[1]];return"<tr><th>"+r[0]+'</th><td class="s"><span class="chip '+m[0]+'">'+m[1]+"</span></td><td>"+r[2]+"</td></tr>"}).join("");
+$("play").onclick=function(){st.play=!st.play;$("play").textContent=st.play?"멈춤":"재생"};$("play").textContent=st.play?"멈춤":"재생";
+$("scrub").oninput=function(){st.play=false;$("play").textContent="재생";st.f=+this.value;st.t=st.f/frame().fps;draw()};
+var dr=null,w=$("world");w.addEventListener("pointerdown",function(e){dr=[e.clientX,e.clientY,st.az,st.el];w.setPointerCapture(e.pointerId)});w.addEventListener("pointermove",function(e){if(!dr)return;st.az=dr[2]-(e.clientX-dr[0])*.6;st.el=Math.max(-10,Math.min(89,dr[3]+(e.clientY-dr[1])*.4));draw()});["pointerup","pointercancel"].forEach(function(n){w.addEventListener(n,function(){dr=null})});
+w.addEventListener("keydown",function(e){var k={ArrowLeft:[-8,0],ArrowRight:[8,0],ArrowUp:[0,5],ArrowDown:[0,-5]}[e.key];if(!k)return;e.preventDefault();st.az+=k[0];st.el=Math.max(-10,Math.min(89,st.el+k[1]));draw()});
+var last=null;function tick(ts){var c=frame(),n=(c.world||c.xy||[]).length;if(st.play&&n){if(last!=null)st.t+=Math.min(.1,(ts-last)/1000);var f=Math.floor(st.t*c.fps);if(f>=n){st.t=0;f=0}if(f!==st.f){st.f=f;draw()}}last=ts;requestAnimationFrame(tick)}
+colors();pick(1);if(reduce){st.f=Math.min(40,(frame().world||[]).length-1);draw()}
+window.addEventListener("resize",draw);if(window.matchMedia)matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){colors();draw()});
+new MutationObserver(function(){colors();draw()}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+requestAnimationFrame(tick);
+})();
+</script>

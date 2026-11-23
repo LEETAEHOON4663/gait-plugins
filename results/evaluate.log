@@ -1,0 +1,34 @@
+plugins: ['gait_events_zeni2008', 'gait_gaitlab2020', 'pd_stgcn_sabo2022', 'pd_stgcn_sabo2022_ap2d', 'pd_stgcn_sabo2022_dt2d'] | failed to load: {}
+
+[gait_events_zeni2008] NM: {'ok': 56, 'ineligible': 3}, PD: {'ok': 25, 'ineligible': 5}, KOA: {'ok': 96, 'ineligible': 4}
+   not run because: {'view': 5, 'needs_one_full_stride_per_side': 7}
+
+[gait_gaitlab2020] NM: {'ineligible': 57, 'ok': 2}, PD: {'ok': 26, 'ineligible': 4}, KOA: {'ok': 81, 'ineligible': 19}
+   not run because: {'too_short': 75, 'view': 5}
+
+[pd_stgcn_sabo2022] NM: {'ok': 58, 'ineligible': 1}, PD: {'ok': 27, 'ineligible': 3}, KOA: {'ok': 98, 'ineligible': 2}
+   not run because: {'view': 5, 'too_short': 1}
+
+[pd_stgcn_sabo2022_ap2d] NM: {'ok': 58, 'ineligible': 1}, PD: {'ok': 27, 'ineligible': 3}, KOA: {'ok': 98, 'ineligible': 2}
+   not run because: {'view': 5, 'too_short': 1}
+
+[pd_stgcn_sabo2022_dt2d] NM: {'ok': 58, 'ineligible': 1}, PD: {'ok': 27, 'ineligible': 3}, KOA: {'ok': 98, 'ineligible': 2}
+   not run because: {'view': 5, 'too_short': 1}
+
+left/right inconsistent videos: 0 | view: {'Side': 184, 'Oblique': 5}
+
+variant                              n(NM/PD/KOA)  AUC PD-NM [95% boot]   PD-KOA  KOA-NM  rho(severity in PD)  mean NM/PD/KOA
+as designed                           30/16/50     0.98 [0.93, 1.00]      0.80    0.90        -0.07           0.13/1.31/0.92
+mean with mirror image                30/16/50     0.98 [0.94, 1.00]      0.82    0.89        -0.05           0.09/1.26/0.85
+equal length, 60 frames each          30/16/50     0.98 [0.94, 1.00]      0.79    0.92        +0.21           0.28/1.06/0.82
+equal length, 90 frames each          27/16/50     0.98 [0.94, 1.00]      0.82    0.91        +0.19           0.14/1.25/0.89
+no camera tilt                        30/16/50     0.91 [0.78, 0.99]      0.74    0.87        +0.01           1.02/1.63/1.42
+no view rotation (raw camera axes)    30/16/50     0.77 [0.61, 0.90]      0.65    0.66        -0.17           0.62/0.89/0.72
+CONTROL clip length                   30/16/50     1.00 [1.00, 1.00]      0.82    0.97        +0.63           100.47/559.16/197.66
+CONTROL walking speed                 30/16/50     1.00 [1.00, 1.00]      0.86    0.98        +0.52           -0.03/-0.01/-0.02
+age 45-70 only, PD-NM AUC: 0.97 {'NM': 16, 'PD': 11}
+score range: -0.66 to 1.77 | predicted class counts: {'NM': {0: 23, 1: 7}, 'PD': {0: 1, 1: 10, 2: 5}, 'KOA': {0: 7, 1: 42, 2: 1}}
+
+beyond speed:
+  PD vs KOA: {'speed': 0.848, 'score': 0.786, 'speed+score': 0.861} | correlation of score with speed: -0.70
+  KOA vs NM: {'speed': 0.972, 'score': 0.893, 'speed+score': 0.968} | correlation of score with speed: -0.84

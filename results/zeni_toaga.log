@@ -1,0 +1,14 @@
+participants with usable straight walks: 11 | segments: 49
+cadence from our rule on their sensor data: mean 104.9 (SD 8.8) steps/min | published Xsens 105.2 (9.1) front, 105.0 (10.3) back
+step time: mean 0.574 (SD 0.051) s | published Xsens 0.55 (0.05) front, 0.58 (0.06) back
+   OAW01: 4 segments, cadence 106.3, step time 0.56 s, stance 66%
+   OAW02: 5 segments, cadence 105.4, step time 0.57 s, stance 66%
+   OAW03: 5 segments, cadence 116.0, step time 0.52 s, stance 67%
+   OAW05: 5 segments, cadence 98.4, step time 0.61 s, stance 66%
+   OAW06: 5 segments, cadence 111.5, step time 0.54 s, stance 67%
+   OAW09: 5 segments, cadence 108.0, step time 0.55 s, stance 65%
+   OAW10: 6 segments, cadence 115.5, step time 0.52 s, stance 66%
+   OAW11: 4 segments, cadence 94.5, step time 0.63 s, stance 68%
+   OAW12: 4 segments, cadence 97.9, step time 0.61 s, stance 67%
+   OAW13: 1 segments, cadence 89.4, step time 0.67 s, stance 70%
+   OAW14: 5 segments, cadence 111.5, step time 0.54 s, stance 67%

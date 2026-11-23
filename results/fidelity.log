@@ -1,0 +1,16 @@
+2. repeatability
+   KOA-PD-NM NM   walking left-to-right vs right-to-left (camera sees the other side): ICC 0.31, mean |difference| 0.52 points, n=27
+   KOA-PD-NM PD   walking left-to-right vs right-to-left (camera sees the other side): ICC -0.31, mean |difference| 0.43 points, n=12
+   KOA-PD-NM KOA  walking left-to-right vs right-to-left (camera sees the other side): ICC 0.51, mean |difference| 0.34 points, n=47
+   KOA-PD-NM all  walking left-to-right vs right-to-left (camera sees the other side): ICC 0.68, mean |difference| 0.41 points, n=86
+   Hip_OA front view, repeated walks in one session: ICC 0.95, mean |difference| 0.15 points, n=139 sessions
+3. mean |score change| when one unavoidable choice changes (score range 0-2)
+   head joint: skull base instead of head centre    mean change -0.14, mean |change| 0.19, class changes in 9% of clips, rank correlation 0.96
+   head joint: top of head                          mean change +0.15, mean |change| 0.17, class changes in 14% of clips, rank correlation 0.95
+   tilt 25 instead of 30 deg                        mean change -0.13, mean |change| 0.37, class changes in 31% of clips, rank correlation 0.91
+   tilt 35 instead of 30 deg                        mean change -0.05, mean |change| 0.37, class changes in 25% of clips, rank correlation 0.76
+   body 10% larger                                  mean change -0.01, mean |change| 0.18, class changes in 13% of clips, rank correlation 0.93
+   body 10% smaller                                 mean change -0.25, mean |change| 0.36, class changes in 23% of clips, rank correlation 0.92
+   hips 30% narrower                                mean change -0.04, mean |change| 0.05, class changes in 3% of clips, rank correlation 1.00
+   joint noise 1 cm                                 mean change +0.01, mean |change| 0.02, class changes in 2% of clips, rank correlation 1.00
+   joint noise 3 cm                                 mean change +0.06, mean |change| 0.08, class changes in 7% of clips, rank correlation 0.99

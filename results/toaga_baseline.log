@@ -1,0 +1,18 @@
+walks 134 | engines per walk {('alphapose', 'detectron', 'openpose'): 126, ('alphapose', 'openpose'): 2, ('alphapose', 'detectron'): 2, ('detectron', 'openpose'): 4} | camera/direction {('bottom', 'back'): 30, ('bottom', 'front'): 37, ('top', 'back'): 30, ('top', 'front'): 37}
+frames per walk: median 229 (min 77, max 576); pixel range x 113..1080, y -1..1916
+common frames of AlphaPose and Detectron: median 242, found for 72 of 74 front walks
+
+A. same model, different extractor on the SAME walk (front view)
+  alphapose model: alphapose track -> detectron track        n= 72  mean |diff| 0.25  bias -0.23  class changes 24%  rank corr 0.76  | 95% bound: diff 0.32, class 33%, rank 0.61
+  alphapose model: alphapose track -> openpose track         n= 71  mean |diff| 0.31  bias +0.23  class changes 17%  rank corr 0.21  | 95% bound: diff 0.39, class 31%, rank -0.01
+  detectron model: detectron track -> alphapose track        n= 72  mean |diff| 0.16  bias +0.12  class changes 18%  rank corr 0.84  | 95% bound: diff 0.20, class 28%, rank 0.72
+  detectron model: detectron track -> openpose track         n= 73  mean |diff| 0.33  bias +0.30  class changes 30%  rank corr 0.54  | 95% bound: diff 0.41, class 44%, rank 0.33
+B. the study's two pipelines on the same walk
+  alphapose pipeline vs detectron pipeline                   n= 72  mean |diff| 0.29  bias -0.26  class changes 21%  rank corr 0.75  | 95% bound: diff 0.36, class 32%, rank 0.61
+C. same pipeline, other things that change
+  alphapose: spread between the study's 10 folds, SD 0.25
+  alphapose: top camera vs bottom camera, same walk   n=35  mean |diff| 0.22  bias +0.19  class changes 6%  rank corr 0.70
+  alphapose: same person, same camera, another walk   mean |diff| 0.16
+  detectron: spread between the study's 10 folds, SD 0.16
+  detectron: top camera vs bottom camera, same walk   n=37  mean |diff| 0.23  bias +0.12  class changes 30%  rank corr 0.49
+  detectron: same person, same camera, another walk   mean |diff| 0.17

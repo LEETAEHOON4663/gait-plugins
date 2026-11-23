@@ -1,0 +1,11 @@
+input to the model                           side LR vs RL: ICC |diff| bias | front repeat: ICC |diff| | hip OA M0 M6 (n, p) | AUC PD-NM PD-KOA
+flip only                                                   -0.40  0.63 +0.63 |                                                            | 0.62  0.49
+flip and swap sides                                         0.51  0.23 +0.07 |                                                            | 0.61  0.48
+3D turn, level camera (before)                              0.68  0.41 +0.25 | 0.95 0.15             | 1.04 0.55 (n=54, p=3e-08)          | 1.00  0.85
+3D turn + floor (now)                                       0.79  0.34 +0.25 | 0.88 0.16             | 1.16 0.86 (n=54, p=3e-06)          | 0.98  0.80
+front tilt estimate: mean 7.1 deg, sd between clips of one session 0.5 deg, sd between sessions 2.2 deg; depth scale median 1.48
+one tilt per session: front repeat ICC 0.91 |diff| 0.14 | hip OA M0 1.17 M6 0.86 (n=54, p=1e-06, lower in 40)
+tilt 20 instead of 30 deg: mean |change| 0.35, class changes 27%
+tilt 25 instead of 30 deg: mean |change| 0.37, class changes 29%
+tilt 35 instead of 30 deg: mean |change| 0.39, class changes 26%
+tilt 40 instead of 30 deg: mean |change| 0.56, class changes 49%

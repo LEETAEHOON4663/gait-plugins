@@ -1,0 +1,10 @@
+
+alphapose: study training input, mean position (normalised): hips (-0.413, -0.394) ankles y -0.262 nose y -0.517; body height 0.255
+  portrait rule 1080x1920                  |shift| x  0.76 SD  y  0.64 SD | spread ratio x 0.93 y 0.48 | body height 0.175 | SCORES mean 1.50 SD between walks 0.03  (padded share q=0.06)
+  landscape 1920x1080, pixels as they are  |shift| x  0.31 SD  y  0.49 SD | spread ratio x 0.52 y 0.85 | body height 0.311 | SCORES mean 0.89 SD between walks 0.32  (padded share q=0.06)
+  body height in pixels on TOAGA: median 296 (study training, 1080 px image: 291)
+
+detectron: study training input, mean position (normalised): hips (-0.412, -0.393) ankles y -0.258 nose y -0.527; body height 0.269
+  portrait rule 1080x1920                  |shift| x  0.76 SD  y  0.69 SD | spread ratio x 0.92 y 0.49 | body height 0.174 | SCORES mean 1.25 SD between walks 0.05  (padded share q=0.06)
+  landscape 1920x1080, pixels as they are  |shift| x  0.32 SD  y  0.44 SD | spread ratio x 0.52 y 0.87 | body height 0.309 | SCORES mean 0.61 SD between walks 0.30  (padded share q=0.06)
+  body height in pixels on TOAGA: median 292 (study training, 1080 px image: 308)

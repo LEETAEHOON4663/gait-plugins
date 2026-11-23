@@ -1,0 +1,13 @@
+videos with a result: 109 | not run: {'too_short': 75, 'view': 5} | by group: {'KOA': 81, 'NM': 2, 'PD': 26}
+
+cadence: predicted by the published model vs counted from the 3D skeleton (video level)
+  if the model outputs strides/s: n=109  Pearson +0.59  Spearman +0.69  mean |diff| 0.113  (constant guess would be off by 0.107)  bias +0.091
+  if the model outputs steps/s:   n=109  Pearson +0.58  Spearman +0.69  mean |diff| 0.624  (constant guess would be off by 0.213)  bias -0.605
+
+subject level:
+  cadence (strides/s): n= 63  Pearson +0.59  Spearman +0.70  mean |diff| 0.113  (constant guess would be off by 0.111)  bias +0.098
+  walking speed (m/s, model-estimated path vs network): n= 63  Pearson +0.56  Spearman +0.62  mean |diff| 0.323  (constant guess would be off by 0.152)  bias +0.321
+  PD   n=16 cadence predicted 0.76 counted 0.61 strides/s | GDI 70.6 (sd 4.3) | speed predicted 0.75 measured 0.31
+  KOA  n=46 cadence predicted 0.80 counted 0.72 strides/s | GDI 75.5 (sd 5.5) | speed predicted 0.82 measured 0.54
+
+repeatability, two recordings of the same person (both directions): cadence mean |diff| 0.083, GDI mean |diff| 8.0 points, n=46

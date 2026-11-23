@@ -1,0 +1,12 @@
+87 people filmed in both directions. Distance between their two average gait cycles, hip-centred, cm
+method                                      n   all joints  legs  arms   | per axis: left-right  up  depth
+A  camera axes as they are                  85     44.2      38.6   60.1   |             15.7    1.7   35.2
+B  flip the second video                    85     37.7      24.9   57.4   |              4.1    1.7   35.2
+C  flip and swap left/right labels          82      8.5       7.0   10.5   |              6.3    1.6    2.8
+D  turn in 3D, level camera assumed         85      7.0       6.6    7.0   |              3.1    1.7    4.1
+E  turn in 3D + floor                       85      6.3       5.9    6.9   |              3.1    1.7    3.4
+F  turn in 3D + floor + 2D correction       85      7.3       5.9    8.2   |              3.6    2.5    3.5
+floor: two strides of the SAME recording differ by 2.4 cm (n=155 recordings)
+2D correction kept the original proportions in 32 of 183 clips
+2D correction: reprojection error median 14.7 -> 6.3 px | bone scales:  {'trunk': (1.102, 0.046), 'shoulder': (1.16, 0.082), 'upper_arm': (1.018, 0.044), 'forearm': (1.013, 0.039), 'hip': (0.891, 0.086), 'thigh': (0.902, 0.051), 'shank': (0.957, 0.026), 'foot': (1.125, 0.084)}
+floor slope: LR -1.2 deg, RL 1.3 deg

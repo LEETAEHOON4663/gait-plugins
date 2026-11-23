@@ -1,0 +1,857 @@
+{
+ "videos_used": 176,
+ "videos_excluded": {
+  "KOA": 4,
+  "NM": 4,
+  "PD": 5
+ },
+ "subjects": {
+  "KOA": 50,
+  "NM": 30,
+  "PD": 15
+ },
+ "mean_age": {
+  "KOA": 56.8,
+  "NM": 43.8,
+  "PD": 68.5
+ },
+ "nested_cv": {
+  "auc": [
+   0.834,
+   0.816,
+   0.864
+  ],
+  "bal_acc": [
+   0.777,
+   0.757,
+   0.815
+  ],
+  "sens": [
+   0.782,
+   0.72,
+   0.84
+  ],
+  "spec_NM": [
+   0.933,
+   0.874,
+   0.967
+  ],
+  "fp_PD": [
+   0.553,
+   0.482,
+   0.6
+  ],
+  "auc_vs_NM": [
+   0.93,
+   0.909,
+   0.951
+  ],
+  "auc_vs_PD": [
+   0.643,
+   0.606,
+   0.691
+  ],
+  "auc_age45_70": [
+   0.8,
+   0.774,
+   0.83
+  ],
+  "auc_vs_NM_age45_70": [
+   0.911,
+   0.89,
+   0.931
+  ]
+ },
+ "n_age45_70": {
+  "KOA": 38,
+  "NM": 16,
+  "PD": 10
+ },
+ "bootstrap_auc_95ci": [
+  0.845,
+  0.754,
+  0.925
+ ],
+ "controls_auc": {
+  "age_only": [
+   0.594,
+   0.571,
+   0.605
+  ],
+  "clip_only": [
+   0.589,
+   0.525,
+   0.644
+  ],
+  "speed_only": [
+   0.68,
+   0.672,
+   0.69
+  ],
+  "age_only_vs_NM": [
+   0.785,
+   0.778,
+   0.79
+  ]
+ },
+ "chosen_in_outer_folds": {
+  "lower_limb/C=0.5": 18,
+  "lower_limb/C=2.0": 15,
+  "all/C=2.0": 9,
+  "all/C=0.5": 5,
+  "lower_limb/C=0.1": 3
+ },
+ "oof": [
+  {
+   "subject": "KOA_EL_001_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 32.0,
+   "p": 0.7745
+  },
+  {
+   "subject": "KOA_EL_002_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 63.0,
+   "p": 0.3424
+  },
+  {
+   "subject": "KOA_EL_003_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 35.0,
+   "p": 0.6552
+  },
+  {
+   "subject": "KOA_EL_004_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 30.0,
+   "p": 0.5315
+  },
+  {
+   "subject": "KOA_EL_005_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 44.0,
+   "p": 0.5559
+  },
+  {
+   "subject": "KOA_EL_006_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 48.0,
+   "p": 0.877
+  },
+  {
+   "subject": "KOA_EL_007_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 68.0,
+   "p": 0.6744
+  },
+  {
+   "subject": "KOA_EL_008_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 30.0,
+   "p": 0.6682
+  },
+  {
+   "subject": "KOA_EL_009_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 62.0,
+   "p": 0.5307
+  },
+  {
+   "subject": "KOA_EL_010_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 45.0,
+   "p": 0.6446
+  },
+  {
+   "subject": "KOA_EL_011_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 52.0,
+   "p": 0.8394
+  },
+  {
+   "subject": "KOA_EL_012_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 45.0,
+   "p": 0.7377
+  },
+  {
+   "subject": "KOA_EL_013_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 35.0,
+   "p": 0.4524
+  },
+  {
+   "subject": "KOA_EL_014_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 58.0,
+   "p": 0.6132
+  },
+  {
+   "subject": "KOA_EL_015_KOA",
+   "group": "KOA",
+   "severity": "EL",
+   "age": 60.0,
+   "p": 0.7557
+  },
+  {
+   "subject": "KOA_MD_001_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 48.0,
+   "p": 0.8305
+  },
+  {
+   "subject": "KOA_MD_002_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 60.0,
+   "p": 0.9086
+  },
+  {
+   "subject": "KOA_MD_003_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 75.0,
+   "p": 0.8563
+  },
+  {
+   "subject": "KOA_MD_004_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 50.0,
+   "p": 0.6336
+  },
+  {
+   "subject": "KOA_MD_005_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 58.0,
+   "p": 0.6046
+  },
+  {
+   "subject": "KOA_MD_006_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 75.0,
+   "p": 0.6528
+  },
+  {
+   "subject": "KOA_MD_007_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 60.0,
+   "p": 0.3443
+  },
+  {
+   "subject": "KOA_MD_008_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 62.0,
+   "p": 0.5288
+  },
+  {
+   "subject": "KOA_MD_009_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 50.0,
+   "p": 0.4809
+  },
+  {
+   "subject": "KOA_MD_010_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 63.0,
+   "p": 0.3783
+  },
+  {
+   "subject": "KOA_MD_011_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 65.0,
+   "p": 0.4705
+  },
+  {
+   "subject": "KOA_MD_012_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 58.0,
+   "p": 0.5016
+  },
+  {
+   "subject": "KOA_MD_013_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 62.0,
+   "p": 0.4766
+  },
+  {
+   "subject": "KOA_MD_014_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 70.0,
+   "p": 0.3972
+  },
+  {
+   "subject": "KOA_MD_015_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 68.0,
+   "p": 0.3105
+  },
+  {
+   "subject": "KOA_MD_016_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 50.0,
+   "p": 0.786
+  },
+  {
+   "subject": "KOA_MD_017_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 48.0,
+   "p": 0.7259
+  },
+  {
+   "subject": "KOA_MD_018_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 58.0,
+   "p": 0.8428
+  },
+  {
+   "subject": "KOA_MD_019_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 68.0,
+   "p": 0.7577
+  },
+  {
+   "subject": "KOA_MD_020_KOA",
+   "group": "KOA",
+   "severity": "MD",
+   "age": 48.0,
+   "p": 0.7241
+  },
+  {
+   "subject": "KOA_SV_001_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 70.0,
+   "p": 0.8978
+  },
+  {
+   "subject": "KOA_SV_002_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 67.0,
+   "p": 0.8439
+  },
+  {
+   "subject": "KOA_SV_003_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 80.0,
+   "p": 0.946
+  },
+  {
+   "subject": "KOA_SV_004_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 64.0,
+   "p": 0.9942
+  },
+  {
+   "subject": "KOA_SV_005_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 76.0,
+   "p": 0.7958
+  },
+  {
+   "subject": "KOA_SV_006_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 69.0,
+   "p": 0.4589
+  },
+  {
+   "subject": "KOA_SV_007_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 62.0,
+   "p": 0.8439
+  },
+  {
+   "subject": "KOA_SV_008_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 52.0,
+   "p": 0.8294
+  },
+  {
+   "subject": "KOA_SV_009_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 70.0,
+   "p": 0.9982
+  },
+  {
+   "subject": "KOA_SV_010_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 56.0,
+   "p": 0.9991
+  },
+  {
+   "subject": "KOA_SV_011_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 60.0,
+   "p": 0.8493
+  },
+  {
+   "subject": "KOA_SV_012_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 35.0,
+   "p": 0.9767
+  },
+  {
+   "subject": "KOA_SV_013_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 70.0,
+   "p": 0.9217
+  },
+  {
+   "subject": "KOA_SV_014_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 65.0,
+   "p": 0.0679
+  },
+  {
+   "subject": "KOA_SV_015_KOA",
+   "group": "KOA",
+   "severity": "SV",
+   "age": 40.0,
+   "p": 0.7639
+  },
+  {
+   "subject": "NM__001_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 61.0,
+   "p": 0.2766
+  },
+  {
+   "subject": "NM__002_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 55.0,
+   "p": 0.1395
+  },
+  {
+   "subject": "NM__003_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 48.0,
+   "p": 0.2217
+  },
+  {
+   "subject": "NM__004_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 37.0,
+   "p": 0.4257
+  },
+  {
+   "subject": "NM__005_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 41.0,
+   "p": 0.4098
+  },
+  {
+   "subject": "NM__006_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 45.0,
+   "p": 0.1443
+  },
+  {
+   "subject": "NM__007_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 56.0,
+   "p": 0.4279
+  },
+  {
+   "subject": "NM__008_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 60.0,
+   "p": 0.1412
+  },
+  {
+   "subject": "NM__009_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 44.0,
+   "p": 0.3184
+  },
+  {
+   "subject": "NM__010_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 50.0,
+   "p": 0.1123
+  },
+  {
+   "subject": "NM__011_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 50.0,
+   "p": 0.0833
+  },
+  {
+   "subject": "NM__012_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 51.0,
+   "p": 0.2352
+  },
+  {
+   "subject": "NM__013_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 30.0,
+   "p": 0.2123
+  },
+  {
+   "subject": "NM__014_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 45.0,
+   "p": 0.1057
+  },
+  {
+   "subject": "NM__015_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 45.0,
+   "p": 0.118
+  },
+  {
+   "subject": "NM__016_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 32.0,
+   "p": 0.4568
+  },
+  {
+   "subject": "NM__017_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 35.0,
+   "p": 0.1416
+  },
+  {
+   "subject": "NM__018_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 31.0,
+   "p": 0.0379
+  },
+  {
+   "subject": "NM__019_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 46.0,
+   "p": 0.853
+  },
+  {
+   "subject": "NM__020_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 31.0,
+   "p": 0.0898
+  },
+  {
+   "subject": "NM__021_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 45.0,
+   "p": 0.1854
+  },
+  {
+   "subject": "NM__022_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 56.0,
+   "p": 0.1161
+  },
+  {
+   "subject": "NM__023_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 34.0,
+   "p": 0.1387
+  },
+  {
+   "subject": "NM__024_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 32.0,
+   "p": 0.1153
+  },
+  {
+   "subject": "NM__025_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 39.0,
+   "p": 0.2375
+  },
+  {
+   "subject": "NM__026_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 55.0,
+   "p": 0.2184
+  },
+  {
+   "subject": "NM__027_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 37.0,
+   "p": 0.1859
+  },
+  {
+   "subject": "NM__028_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 50.0,
+   "p": 0.1385
+  },
+  {
+   "subject": "NM__029_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 40.0,
+   "p": 0.2038
+  },
+  {
+   "subject": "NM__030_NM",
+   "group": "NM",
+   "severity": "",
+   "age": 32.0,
+   "p": 0.1329
+  },
+  {
+   "subject": "PD_MD_001_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 52.0,
+   "p": 0.9777
+  },
+  {
+   "subject": "PD_MD_002_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 70.0,
+   "p": 0.419
+  },
+  {
+   "subject": "PD_MD_003_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 80.0,
+   "p": 0.5074
+  },
+  {
+   "subject": "PD_MD_004_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 64.0,
+   "p": 0.8426
+  },
+  {
+   "subject": "PD_MD_005_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 71.0,
+   "p": 0.9096
+  },
+  {
+   "subject": "PD_MD_006_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 85.0,
+   "p": 0.4193
+  },
+  {
+   "subject": "PD_MD_007_PD",
+   "group": "PD",
+   "severity": "MD",
+   "age": 67.0,
+   "p": 0.5222
+  },
+  {
+   "subject": "PD_ML_001_PD",
+   "group": "PD",
+   "severity": "ML",
+   "age": 62.0,
+   "p": 0.054
+  },
+  {
+   "subject": "PD_ML_002_PD",
+   "group": "PD",
+   "severity": "ML",
+   "age": 69.0,
+   "p": 0.2894
+  },
+  {
+   "subject": "PD_ML_003_PD",
+   "group": "PD",
+   "severity": "ML",
+   "age": 68.0,
+   "p": 0.9381
+  },
+  {
+   "subject": "PD_ML_004_PD",
+   "group": "PD",
+   "severity": "ML",
+   "age": 63.0,
+   "p": 0.4807
+  },
+  {
+   "subject": "PD_ML_005_PD",
+   "group": "PD",
+   "severity": "ML",
+   "age": 57.0,
+   "p": 0.6485
+  },
+  {
+   "subject": "PD_ML_006_PD",
+   "group": "PD",
+   "severity": "ML",
+   "age": 80.0,
+   "p": 0.6115
+  },
+  {
+   "subject": "PD_SV_001_PD",
+   "group": "PD",
+   "severity": "SV",
+   "age": 65.0,
+   "p": 0.004
+  },
+  {
+   "subject": "PD_SV_003_PD",
+   "group": "PD",
+   "severity": "SV",
+   "age": 75.0,
+   "p": 0.0516
+  }
+ ],
+ "excluded": {
+  "KOA": [
+   [
+    "KOA-PD-NM/KOA-PD-NM/KOA/KOA_EL/011_KOA_02_EL.jsonl",
+    [
+     "view:Oblique_needs_Side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/KOA/KOA_MD/006_KOA_01_MD.jsonl",
+    [
+     "view:Oblique_needs_Side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/KOA/KOA_MD/009_KOA_01_MD.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/KOA/KOA_SV/014_KOA_01_SV.jsonl",
+    [
+     "view:Oblique_needs_Side"
+    ]
+   ]
+  ],
+  "NM": [
+   [
+    "KOA-PD-NM/KOA-PD-NM/NM/004_NM_02.jsonl",
+    [
+     "view:Unknown_needs_Side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/NM/006_NM_02.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/NM/011_NM_01.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/NM/018_NM_02.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ]
+  ],
+  "PD": [
+   [
+    "KOA-PD-NM/KOA-PD-NM/PD/PD_MD/001_PD_02_MD.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/PD/PD_MD/003_PD_01_MD.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/PD/PD_ML/003_PD_01_ML.jsonl",
+    [
+     "view:Oblique_needs_Side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/PD/PD_ML/005_PD_02_ML.jsonl",
+    [
+     "view:Oblique_needs_Side"
+    ]
+   ],
+   [
+    "KOA-PD-NM/KOA-PD-NM/PD/PD_SV/002_PD_01_SV.jsonl",
+    [
+     "needs_one_full_stride_per_side"
+    ]
+   ]
+  ]
+ }
+}
